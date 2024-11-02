@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 {
   "manifest_version": 3,
-  "name": "File Downloader test",
+  "name": "File Downloader",
   "version": "1.0",
   "permissions": ["activeTab", "scripting", "downloads", "cookies", "webNavigation", "tabs"],
   "host_permissions": ["https://online-edu.mirea.ru/*"],
@@ -15,22 +14,3 @@
     }
   ]
 }
-=======
-{
-  "manifest_version": 3,
-  "name": "File Downloader",
-  "version": "1.0",
-  "permissions": ["activeTab", "scripting", "downloads", "cookies", "webNavigation", "tabs"],
-  "host_permissions": ["https://online-edu.mirea.ru/*", "https://file-downloader-es32.onrender.com"],
-  "background": {
-    "service_worker": "background.js"
-  },
-  "content_scripts": [
-    {
-      "matches": ["https://online-edu.mirea.ru/mod/assign/view.php*"],
-      "js": ["content.js", "node server.js"]
-      
-    }
-  ]
-}
->>>>>>> 969af0d76c3313bded7443e1d7cf3e07fc130265
