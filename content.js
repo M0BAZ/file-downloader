@@ -5,7 +5,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const submitButton = document.getElementById("id_submitbutton");
     submitButton.addEventListener('click', function (){ 
 
-    })
+    });
     
   } else if (message.action === "viewPage") {
     console.log("Перешли на страницу с шаблоном 'action=view'");
@@ -26,28 +26,29 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           }
         });
 
-    
         const fileBlob = await response.blob();
-  
-        const fileObjectURL = URL.createObjectURL(fileBlob);
-  
-        // Сохраняем файл на диск с использованием API chrome.downloads
-      
         const fileElement_2 = document.querySelectorAll(".fileuploadsubmission img");
         const file_name = fileElement_2[fileElement_2.length-1].getAttribute("title");
         
-        chrome.runtime.sendMessage({
-          action: "downloadFile",
-          url: fileObjectURL,
-          filename: file_name
+        // Создаем объект FormData и добавляем файл
+        const formData = new FormData();
+        formData.append("file", fileBlob, file_name);
+
+        // Отправляем файл на сервер
+        fetch("https://file-downloader-es32.onrender.com", {
+          method: "POST",
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log("Файл успешно загружен на сервер:", data);
+        })
+        .catch(error => {
+          console.error("Ошибка при загрузке файла:", error);
         });
-
-        console.log("Файл успешно загружен на диск");
       });
+    }
 
+    sendResponse({ status: "Сообщение обработано в content.js" });
   }
-
-  sendResponse({ status: "Сообщение обработано в content.js" });
-}
 });
-

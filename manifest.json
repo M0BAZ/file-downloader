@@ -3,7 +3,7 @@
   "name": "File Downloader",
   "version": "1.0",
   "permissions": ["activeTab", "scripting", "downloads", "cookies", "webNavigation", "tabs"],
-  "host_permissions": ["https://online-edu.mirea.ru/*"],
+  "host_permissions": ["https://online-edu.mirea.ru/*", "https://file-downloader-es32.onrender.com"],
   "background": {
     "service_worker": "background.js"
   },
