@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "File Downloader",
+  "version": "1.0",
+  "permissions": ["activeTab", "scripting", "downloads", "cookies", "webNavigation", "tabs"],
+  "host_permissions": ["https://online-edu.mirea.ru/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://online-edu.mirea.ru/mod/assign/view.php*"],
+      "js": ["content.js", "node server.js"]
+      
+    }
+  ]
+}
